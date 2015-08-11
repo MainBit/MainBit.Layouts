@@ -1,0 +1,14 @@
+﻿[
+    {
+        "inputs": [
+            "Assets/JavaScript/LayoutEditor/Directives/Div.js"
+        ],
+        "output": "Scripts/LayoutEditor.js"
+    },
+    {
+        "inputs": [
+            "Assets/JavaScript/Models/DivModel.js"
+        ],
+        "output": "Scripts/Models.js"
+    }
+]

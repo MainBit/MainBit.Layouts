@@ -1,0 +1,10 @@
+﻿Name: MainBit.Layouts
+AntiForgery: enabled
+Author: The MainBit Team
+Website: http://mainbit.com
+Version: 1.9.1
+OrchardVersion: 1.9.1
+Description: Description for the module
+FeatureDescription: Provides Div layout elements.
+Dependencies: Orchard.Layouts
+Category: Content

@@ -1,0 +1,20 @@
+﻿@using Orchard.Layouts.ViewModels;
+<div class="layout-element-wrapper" ng-class="{'layout-container-empty': getShowChildrenPlaceholder()}">
+    <ul class="layout-panel layout-panel-main">
+        <li class="layout-panel-item layout-panel-label">Div</li>
+        @Display()
+        @Display(New.LayoutEditor_Template_Properties(ElementTypeName: "div"))
+        <li class="layout-panel-item layout-panel-action" title="@T("Delete {{element.contentTypeLabel.toLowerCase()}} (Del)")" ng-click="delete(element)"><i class="fa fa-remove"></i></li>
+        <li class="layout-panel-item layout-panel-action" title="@T("Move {{element.contentTypeLabel.toLowerCase()}} up (Ctrl+Up)")" ng-click="element.moveUp()" ng-class="{disabled: !element.canMoveUp()}"><i class="fa fa-chevron-up"></i></li>
+        <li class="layout-panel-item layout-panel-action" title="@T("Move {{element.contentTypeLabel.toLowerCase()}} down (Ctrl+Down)")" ng-click="element.moveDown()" ng-class="{disabled: !element.canMoveDown()}"><i class="fa fa-chevron-down"></i></li>
+    </ul>
+    <div class="layout-container-children-placeholder">
+        @T("Drag an element from the toolbox and drop it here to add content.")
+    </div>
+    @Display(New.LayoutEditor_Template_Children())
+    @*<div class="layout-children clearfix" ng-model="element.children" ui-sortable="sortableOptions">
+        <div class="clearfix" ng-repeat="child in element.children" ng-class="getClasses(child)" ng-mouseenter="child.setIsActive(true)" ng-mouseleave="child.setIsActive(false)" ng-click="click(child, $event)" tabindex="{{$id}}">
+            <orc-layout-child element="child" />
+        </div>
+    </div>*@
+</div>
