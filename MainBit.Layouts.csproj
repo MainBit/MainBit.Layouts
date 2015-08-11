@@ -75,6 +75,10 @@
   <ItemGroup>
     <Content Include="Assets\JavaScript\LayoutEditor\Directives\Div.js" />
     <Content Include="Assets\JavaScript\Models\DivModel.js" />
+    <Content Include="Scripts\LayoutEditor.js" />
+    <Content Include="Scripts\LayoutEditor.min.js" />
+    <Content Include="Scripts\Models.js" />
+    <Content Include="Scripts\Models.min.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Properties\AssemblyInfo.cs" />
