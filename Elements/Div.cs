@@ -12,7 +12,7 @@ namespace MainBit.Layouts.Elements
 
         public override string Category
         {
-            get { return "Container"; }
+            get { return "Containers"; }
         }
 
         public override LocalizedString DisplayText
