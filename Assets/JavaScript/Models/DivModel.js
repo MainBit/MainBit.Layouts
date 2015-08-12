@@ -5,6 +5,7 @@
         LayoutEditor.Element.call(this, "Div", data, htmlId, htmlClass, htmlStyle, isTemplated);
         LayoutEditor.Container.call(this, ["Grid", "Content"], children);
 
+        //this.isContainable = true;
         this.dropTargetClass = "layout-common-holder";
 
         this.toObject = function () {
