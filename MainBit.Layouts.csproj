@@ -100,15 +100,25 @@
       <Name>Orchard.Layouts</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Orchard.Tokens\Orchard.Tokens.csproj">
+      <Project>{6f759635-13d7-4e94-bcc9-80445d63f117}</Project>
+      <Name>Orchard.Tokens</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drivers\DivElementDriver.cs" />
     <Compile Include="Elements\Div.cs" />
+    <Compile Include="Helpers\ElementExtensions.cs" />
     <Compile Include="Handlers\LayoutEditorShapeEventHandler.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\DefaultModelMaps.cs" />
+    <Compile Include="Services\ElementService.cs" />
+    <Compile Include="Services\IElementService.cs" />
+    <Compile Include="Tokens\ElementTokens.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Elements\Paragraph.Plain.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Elements\Div.cshtml" />
   </ItemGroup>

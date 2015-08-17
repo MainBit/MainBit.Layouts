@@ -5,6 +5,14 @@ Website: http://mainbit.com
 Version: 1.9.1
 OrchardVersion: 1.9.1
 Description: Description for the module
-FeatureDescription: Provides Div layout elements.
-Dependencies: Orchard.Layouts
-Category: Content
+Features:
+    MainBit.Layouts:
+        Name: MainBit.Layouts
+        Description: Provides a div layout element (a simple container element) and a html extension to render an element with specific display type.
+        Dependencies: Orchard.Layouts
+        Category: Layout
+    MainBit.Layouts.Tokens:
+        Name: MainBit.Layouts.Tokens
+        Description: Provides an element token provider that enables elements to be rendered with specific display type using a token.
+        Dependencies: MainBit.Layouts, Orchard.Layouts.Tokens
+		Category: Layout
