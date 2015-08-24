@@ -16,3 +16,8 @@ Features:
         Description: Provides an element token provider that enables elements to be rendered with specific display type using a token.
         Dependencies: MainBit.Layouts, Orchard.Layouts.Tokens
 		Category: Layout
+	MainBit.Layouts.Navigation:
+        Name: MainBit.Layouts.Navigation
+        Description: Adds element class name alternates for menu, menuItem and menuItemLink shapes.
+		Dependencies: Orchard.Layouts, Navigation
+		Category: Layout

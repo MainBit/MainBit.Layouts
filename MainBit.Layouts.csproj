@@ -109,6 +109,8 @@
   <ItemGroup>
     <Compile Include="Drivers\DivElementDriver.cs" />
     <Compile Include="Elements\Div.cs" />
+    <Compile Include="Handlers\MenuShapeAlternates.cs" />
+    <Compile Include="Handlers\MenuElementEventHandler.cs" />
     <Compile Include="Helpers\ElementExtensions.cs" />
     <Compile Include="Handlers\LayoutEditorShapeEventHandler.cs" />
     <Compile Include="ResourceManifest.cs" />
