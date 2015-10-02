@@ -13,15 +13,17 @@ namespace MainBit.Layouts.Handlers
     [OrchardFeature("MainBit.Layouts.Navigation")]
     public class MenuElementEventHandler : ElementEventHandlerBase
     {
-        public override void Displayed(ElementDisplayedContext context)
+        //public override void Displayed(Orchard.Layouts.Framework.Display.ElementDisplayContext context)
+        public override void Displaying(Orchard.Layouts.Framework.Display.ElementDisplayContext context)
         {
-            if (!(context.Element is Menu) || !(context.ElementShape.Menu is IShape))
-            {
-                return;
-            }
+            // for feature versions
+            //if ((context.Element is Menu) && (context.ElementShape.Menu is IShape))
+            //{
+            //    //context.ElementShape.Menu.Element = context.Element;
+            //    context.ElementShape.Menu.ElementClass = context.Element.HtmlClass;   
+            //}
 
-            //context.ElementShape.Menu.Element = context.Element;
-            context.ElementShape.Menu.ElementClass = context.Element.HtmlClass;   
+            
         }
     }
 }

@@ -12,14 +12,19 @@ namespace MainBit.Layouts.Handlers
 {
     public class ElementEventHandler : ElementEventHandlerBase
     {
-        public override void Displayed(ElementDisplayedContext context)
+        //public override void Displayed(Orchard.Layouts.Framework.Display.ElementDisplayContext context)
+        public override void Displaying(Orchard.Layouts.Framework.Display.ElementDisplayContext context)
         {
-            if (context.Element is MediaItem)
+            (context.ElementShape as IShape).Metadata.OnDisplaying((displaying =>
             {
-                (context.ElementShape as IShape).Metadata.OnDisplaying((displaying => {
+                displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_ContentType__{1}", context.Element.GetType().Name, context.Content.ContentItem.ContentType));
+
+                if (context.Element is MediaItem)
+                {
                     displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}", context.Element.GetType().Name, (context.Element as MediaItem).DisplayType));
-                }));
-            }
+                }
+
+            }));
         }
     }
 }
