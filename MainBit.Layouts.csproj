@@ -107,17 +107,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drivers\ContentLayoutMapPartDriver.cs" />
     <Compile Include="Drivers\DivElementDriver.cs" />
     <Compile Include="Elements\Div.cs" />
+    <Compile Include="Handlers\ContentLayoutMapPartHandler.cs" />
     <Compile Include="Handlers\ElementEventHandler.cs" />
+    <Compile Include="Handlers\LayoutPartHandler.cs" />
     <Compile Include="Handlers\MenuShapeAlternates.cs" />
     <Compile Include="Handlers\MenuElementEventHandler.cs" />
     <Compile Include="Helpers\ElementExtensions.cs" />
     <Compile Include="Handlers\LayoutEditorShapeEventHandler.cs" />
+    <Compile Include="Migrations.cs" />
+    <Compile Include="Models\ContentLayoutMapPart.cs" />
+    <Compile Include="Models\LayoutContentMapRecord.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\DefaultModelMaps.cs" />
-    <Compile Include="Services\ElementService.cs" />
     <Compile Include="Services\IElementService.cs" />
+    <Compile Include="Services\ILayoutContentMapService.cs" />
     <Compile Include="Tokens\ElementTokens.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +137,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Placement.info" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Parts\ContentLayoutMap.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Parts\ContentLayoutMap_SummaryAdmin.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

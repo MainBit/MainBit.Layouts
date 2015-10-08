@@ -1,0 +1,11 @@
+﻿@using Orchard.Utility.Extensions;
+@{
+    var layoutParts = (IEnumerable<Orchard.ContentManagement.IContent>)Model.ContentPart.LayoutParts;
+}
+@if (layoutParts.Any())
+{
+    <p class="content-layout-map">
+        <span class="name">@T("Related content"):</span>
+        @(new HtmlString(string.Join(", ", layoutParts.Select(c => Html.ItemDisplayLink(c.ContentItem).ToString()).ToArray())))
+    </p>
+}

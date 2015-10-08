@@ -1,0 +1,8 @@
+﻿<Placement>
+  <Match DisplayType="Detail">
+    <Place Parts_ContentLayoutMap="Content:10"/>
+  </Match>
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_ContentLayoutMap_SummaryAdmin="Content:10"/>
+  </Match>
+</Placement>

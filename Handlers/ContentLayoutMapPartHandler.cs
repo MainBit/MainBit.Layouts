@@ -1,0 +1,43 @@
+using System;
+using System.Linq;
+using JetBrains.Annotations;
+using Orchard.ContentManagement.MetaData;
+using Orchard.Core.Common.Models;
+using Orchard.Data;
+using Orchard.Localization;
+using Orchard.ContentManagement;
+using Orchard.ContentManagement.Handlers;
+using Orchard.Security;
+using Orchard.Services;
+using MainBit.Layouts.Services;
+using MainBit.Layouts.Models;
+
+namespace MainBit.Layouts.Handlers {
+    [UsedImplicitly]
+    public class ContentLayoutMapPartHandler : ContentHandler {
+        private readonly ILayoutContentMapService _layoutContentMapService;
+        private readonly IContentManager _contentManager;
+
+        public ContentLayoutMapPartHandler(
+            ILayoutContentMapService layoutContentMapService,
+            IContentManager contentManager) {
+
+            _contentManager = contentManager;
+            _layoutContentMapService = layoutContentMapService;
+            T = NullLocalizer.Instance;
+
+            OnLoading<ContentLayoutMapPart>((context, part) => LazyLoadHandlers(part));
+        }
+
+
+        public Localizer T { get; set; }
+
+        protected void LazyLoadHandlers(ContentLayoutMapPart part)
+        {
+            part.LayoutPartsField.Loader(() => {
+                var records = _layoutContentMapService.GetForContentItem(part.Id);
+                return _contentManager.GetMany<IContent>(records.Select(r => r.LayoutPartRecord_Id), VersionOptions.Published, QueryHints.Empty);
+            });    
+        }
+    }
+}
