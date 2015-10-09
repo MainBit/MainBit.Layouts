@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MainBit.Layouts.Models
+namespace MainBit.Layouts.Relations.Models
 {
     public class LayoutContentMapRecord
     {

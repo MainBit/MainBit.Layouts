@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Orchard.Layouts.Elements;
-using MainBit.Layouts.Services;
+using MainBit.Layouts.Relations.Services;
+using Orchard.Environment.Extensions;
 
-namespace MainBit.Layouts.Handlers
+namespace MainBit.Layouts.Relations.Handlers
 {
+    [OrchardFeature("MainBit.Layouts.Relations")]
     public class LayoutPartHandler : ContentHandler
     {
         private readonly ILayoutManager _layoutManager;

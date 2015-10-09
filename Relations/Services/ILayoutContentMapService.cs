@@ -1,13 +1,14 @@
-﻿using MainBit.Layouts.Models;
+﻿using MainBit.Layouts.Relations.Models;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Data;
+using Orchard.Environment.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MainBit.Layouts.Services
+namespace MainBit.Layouts.Relations.Services
 {
     public interface ILayoutContentMapService : IDependency
     {
@@ -17,6 +18,7 @@ namespace MainBit.Layouts.Services
         void LayoutPartRemoved(int layoutPartId);
     }
 
+    [OrchardFeature("MainBit.Layouts.Relations")]
     public class LayoutContentMapService : ILayoutContentMapService
     {
         private readonly IRepository<LayoutContentMapRecord> _layoutContentRepository;

@@ -9,11 +9,14 @@ using Orchard.ContentManagement;
 using Orchard.ContentManagement.Handlers;
 using Orchard.Security;
 using Orchard.Services;
-using MainBit.Layouts.Services;
-using MainBit.Layouts.Models;
+using MainBit.Layouts.Relations.Services;
+using MainBit.Layouts.Relations.Models;
+using Orchard.Environment.Extensions;
 
-namespace MainBit.Layouts.Handlers {
+namespace MainBit.Layouts.Relations.Handlers
+{
     [UsedImplicitly]
+    [OrchardFeature("MainBit.Layouts.Relations")]
     public class ContentLayoutMapPartHandler : ContentHandler {
         private readonly ILayoutContentMapService _layoutContentMapService;
         private readonly IContentManager _contentManager;

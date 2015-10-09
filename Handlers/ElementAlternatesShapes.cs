@@ -24,8 +24,9 @@ using Orchard.Environment.Extensions;
 
 namespace MainBit.Layouts.Handlers
 {
-    [OrchardFeature("MainBit.Layouts.Navigation")]
-    public class AlternateShapes : IShapeTableProvider {
+    [OrchardFeature("MainBit.Layouts.Alternates")]
+    public class ElementAlternatesShapes : IShapeTableProvider
+    {
 
         public void Discover(ShapeTableBuilder builder) {
 

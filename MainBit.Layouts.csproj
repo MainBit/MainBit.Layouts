@@ -107,23 +107,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Drivers\ContentLayoutMapPartDriver.cs" />
+    <Compile Include="Relations\Drivers\ContentLayoutMapPartDriver.cs" />
     <Compile Include="Drivers\DivElementDriver.cs" />
     <Compile Include="Elements\Div.cs" />
-    <Compile Include="Handlers\ContentLayoutMapPartHandler.cs" />
-    <Compile Include="Handlers\ElementEventHandler.cs" />
-    <Compile Include="Handlers\LayoutPartHandler.cs" />
-    <Compile Include="Handlers\MenuShapeAlternates.cs" />
-    <Compile Include="Handlers\MenuElementEventHandler.cs" />
+    <Compile Include="Relations\Hanlders\ContentLayoutMapPartHandler.cs" />
+    <Compile Include="Handlers\ElementAlternatesEventHandler.cs" />
+    <Compile Include="Relations\Hanlders\LayoutPartHandler.cs" />
+    <Compile Include="Handlers\ElementAlternatesShapes.cs" />
     <Compile Include="Helpers\ElementExtensions.cs" />
     <Compile Include="Handlers\LayoutEditorShapeEventHandler.cs" />
-    <Compile Include="Migrations.cs" />
-    <Compile Include="Models\ContentLayoutMapPart.cs" />
-    <Compile Include="Models\LayoutContentMapRecord.cs" />
+    <Compile Include="Relations\Migrations.cs" />
+    <Compile Include="Relations\Models\ContentLayoutMapPart.cs" />
+    <Compile Include="Relations\Models\LayoutContentMapRecord.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\DefaultModelMaps.cs" />
     <Compile Include="Services\IElementService.cs" />
-    <Compile Include="Services\ILayoutContentMapService.cs" />
+    <Compile Include="Relations\Services\ILayoutContentMapService.cs" />
     <Compile Include="Tokens\ElementTokens.cs" />
   </ItemGroup>
   <ItemGroup>

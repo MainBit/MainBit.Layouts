@@ -1,9 +1,11 @@
 ﻿using Orchard.ContentManagement.MetaData;
 using Orchard.Core.Contents.Extensions;
 using Orchard.Data.Migration;
+using Orchard.Environment.Extensions;
 
-namespace MainBit.Layouts
+namespace MainBit.Layouts.Relations
 {
+    [OrchardFeature("MainBit.Layouts.Relations")]
     public class Migrations : DataMigrationImpl
     {
         public int Create()
