@@ -16,12 +16,12 @@ namespace MainBit.Layouts.Relations.Handlers
     public class LayoutPartHandler : ContentHandler
     {
         private readonly ILayoutManager _layoutManager;
-        private readonly ILayoutContentMapService _layoutContentService;
+        private readonly ILayoutContentMapService _layoutContentMapService;
 
-        public LayoutPartHandler(ILayoutManager layoutManager, ILayoutContentMapService layoutContentService)
+        public LayoutPartHandler(ILayoutManager layoutManager, ILayoutContentMapService layoutContentMapService)
         {
             _layoutManager = layoutManager;
-            _layoutContentService = layoutContentService;
+            _layoutContentMapService = layoutContentMapService;
 
             OnUpdated<LayoutPart>((context, part) => {
 
@@ -32,12 +32,12 @@ namespace MainBit.Layouts.Relations.Handlers
                     .SelectMany(c => c.ContentItemIds)
                     .ToList();
 
-                _layoutContentService.LayoutPartUpdated(part.Id, contentItemIds);
+                _layoutContentMapService.LayoutPartUpdated(part.Id, contentItemIds);
             });
 
             OnRemoved<LayoutPart>((context, part) =>
             {
-                _layoutContentService.LayoutPartRemoved(part.Id);
+                _layoutContentMapService.LayoutPartRemoved(part.Id);
             });
         }
     }

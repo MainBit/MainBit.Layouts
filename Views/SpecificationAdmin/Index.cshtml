@@ -1,0 +1,44 @@
+﻿@model MainBit.Layouts.ViewModels.SpecificationsIndexViewModel
+@{
+    Layout.Title = T("Specification elements");
+}
+<div class="manage">
+    @Html.ActionLink(T("Create").Text, "Create", "SpecificationAdmin", new { area = "MainBit.Layouts" }, new { @class = "button primaryAction" })
+</div>
+@using (Html.BeginFormAntiForgeryPost()) {
+    <fieldset class="bulk-actions">
+        <label for="publishActions">@T("Actions:")</label>
+        <select id="publishActions" name="Options.BulkAction">
+            @Html.SelectOption("", false, T("Choose action...").ToString())
+            @Html.SelectOption("Delete", false, T("Delete").ToString())
+        </select>
+        <button type="submit" name="submit.BulkEdit" value="yes">@T("Apply")</button>
+    </fieldset>
+    <table class="items">
+        <thead>
+            <tr>
+                <th><input type="checkbox" class="check-all" /></th>
+                <th>@T("Display Name")</th>
+                <th>@T("Name")</th>
+                <th>@T("Base Element")</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var specification in Model.Specifications)
+            {
+                <tr>
+                    <td><input type="checkbox" value="@specification.Id" name="specificationIds" /></td>
+                    <td>@specification.ElementDisplayName</td>
+                    <td>@specification.ElementTypeName</td>
+                    <td>@specification.BaseElementTypeName</td>
+                    <td>
+                        @Html.ActionLink(T("Edit").Text, "Edit", "SpecificationAdmin", new { id = specification.Id, area = "MainBit.Layouts" }, null) @T(" | ")
+                        @Html.ActionLink(T("Properties").Text, "Properties", "SpecificationAdmin", new { id = specification.Id, area = "MainBit.Layouts" }, null) @T(" | ")
+                        @Html.ActionLink(T("Remove").Text, "Delete", "SpecificationAdmin", new { id = specification.Id, area = "MainBit.Layouts" }, new { itemprop = "RemoveUrl UnsafeUrl" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

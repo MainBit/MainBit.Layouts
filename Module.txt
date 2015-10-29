@@ -26,3 +26,8 @@ Features:
         Description: Provides a content part that displays related layout parts (Content items with layout parts witch specific content item is added to).
         Dependencies: Orchard.Layouts
         Category: Layout
+	MainBit.Layouts.Bunches:
+        Name: MainBit.Layouts.Bunches
+        Description: Provides a way to grouping elements and leater use this group as one element (with editable subelements)
+        Dependencies: Orchard.Layouts
+        Category: Layout

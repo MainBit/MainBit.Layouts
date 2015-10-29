@@ -1,0 +1,21 @@
+﻿@model MainBit.Layouts.ViewModels.EditElementSpecificationPropertyViewModel
+@{
+    Layout.Title = T("Create Element Property based on {0}", "asd");
+}
+@using (Html.BeginFormAntiForgeryPost()) {
+    @Html.ValidationSummary()
+    <fieldset>
+        <div>
+            @Html.LabelFor(m => m.Property.Name, T("Element Display Name"))
+            @Html.TextBoxFor(m => m.Property.Name, new { @class = "text large", disabled = "disabled" })
+            @Html.Hint(T(""))
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Property.Type, T("Element Type Name"))
+            @Html.TextBoxFor(m => m.Property.Type, new { @class = "text large" })
+            @Html.Hint(T(""))
+        </div>
+    </fieldset>
+    <button type="submit">@T("Create")</button>
+    @Html.ActionLink(T("Cancel").Text, "Edit", "SpecificationAdmin", new { id = Model.ElementSpecification.Id, area = "MainBit.Layouts" }, new { @class = "button" })
+}

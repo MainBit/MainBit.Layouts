@@ -74,7 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\JavaScript\LayoutEditor\Directives\Div.js" />
-    <Content Include="Assets\JavaScript\Models\DivModel.js" />
+    <Content Include="Assets\JavaScript\LayoutEditor\Directives\Bunch.js" />
+    <Content Include="Assets\JavaScript\Models\Bunch.js" />
+    <Content Include="Assets\JavaScript\Models\Div.js" />
     <Content Include="Scripts\LayoutEditor.js" />
     <Content Include="Scripts\LayoutEditor.min.js" />
     <Content Include="Scripts\Models.js" />
@@ -107,23 +109,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Relations\Drivers\ContentLayoutMapPartDriver.cs" />
+    <Compile Include="AdminMenu\Bunches.cs" />
+    <Compile Include="Drivers\ElementIdentityDriver.cs" />
+    <Compile Include="Drivers\BunchElementDriver.cs" />
+    <Compile Include="Drivers\ContentLayoutMapPartDriver.cs" />
     <Compile Include="Drivers\DivElementDriver.cs" />
+    <Compile Include="Drivers\BunchElementPartDriver.cs" />
     <Compile Include="Elements\Div.cs" />
-    <Compile Include="Relations\Hanlders\ContentLayoutMapPartHandler.cs" />
+    <Compile Include="Elements\Bunch.cs" />
+    <Compile Include="Handlers\BunchElementPartHandler.cs" />
+    <Compile Include="Handlers\ContentLayoutMapPartHandler.cs" />
     <Compile Include="Handlers\ElementAlternatesEventHandler.cs" />
-    <Compile Include="Relations\Hanlders\LayoutPartHandler.cs" />
+    <Compile Include="Handlers\LayoutPartHandler.cs" />
     <Compile Include="Handlers\ElementAlternatesShapes.cs" />
     <Compile Include="Helpers\ElementExtensions.cs" />
     <Compile Include="Handlers\LayoutEditorShapeEventHandler.cs" />
-    <Compile Include="Relations\Migrations.cs" />
-    <Compile Include="Relations\Models\ContentLayoutMapPart.cs" />
-    <Compile Include="Relations\Models\LayoutContentMapRecord.cs" />
+    <Compile Include="Migrations\Bunches.cs" />
+    <Compile Include="Migrations\Relations.cs" />
+    <Compile Include="Models\ContentLayoutMapPart.cs" />
+    <Compile Include="Models\LayoutContentMapRecord.cs" />
+    <Compile Include="Models\BunchElementPart.cs" />
+    <Compile Include="Providers\BunchElementHarverster.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\DefaultModelMaps.cs" />
     <Compile Include="Services\IElementService.cs" />
-    <Compile Include="Relations\Services\ILayoutContentMapService.cs" />
+    <Compile Include="Services\IBunchService.cs" />
+    <Compile Include="Services\ILayoutContentMapService.cs" />
     <Compile Include="Tokens\ElementTokens.cs" />
+    <Compile Include="ViewModels\ElementIdentityViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Elements\Paragraph.Plain.cshtml" />
@@ -145,6 +158,39 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Parts\ContentLayoutMap_SummaryAdmin.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecificationAdmin\Browse.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecificationAdmin\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecificationAdmin\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecificationAdmin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecificationAdmin\Properties.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecificationPropertyAdmin\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecificationPropertyAdmin\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts\ElementBunch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Elements\Bunch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\LayoutEditor.Template.Bunch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\ElementIdentity.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

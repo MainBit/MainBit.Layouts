@@ -1,13 +1,15 @@
 ﻿[
     {
         "inputs": [
+            "Assets/JavaScript/LayoutEditor/Directives/Bunch.js",
             "Assets/JavaScript/LayoutEditor/Directives/Div.js"
         ],
         "output": "Scripts/LayoutEditor.js"
     },
     {
         "inputs": [
-            "Assets/JavaScript/Models/DivModel.js"
+            "Assets/JavaScript/Models/Bunch.js",
+            "Assets/JavaScript/Models/Div.js"
         ],
         "output": "Scripts/Models.js"
     }

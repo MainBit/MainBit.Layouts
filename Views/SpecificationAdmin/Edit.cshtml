@@ -1,0 +1,30 @@
+﻿@model MainBit.Layouts.ViewModels.EditElementSpecificationViewModel
+@{
+    Layout.Title = T("Edit Element Specificication based on {0}", Model.DisplayText);
+}
+<div class="manage">
+    @Html.ActionLink(T("Create").Text, "Create", "SpecificationPropertyAdmin", new { id = Model.ElementSpecification.Id, area = "MainBit.Layouts" }, new { @class = "button primaryAction" })
+</div>
+<table class="items">
+    <thead>
+        <tr>
+            <th>@T("Name")</th>
+            <th>@T("Type")</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var property in Model.ElementProperties.Properties)
+        {
+            <tr>
+                <td>@property.Name</td>
+                <td>@property.Type</td>
+                <td>
+                    @Html.ActionLink(T("Edit").Text, "Edit", "SpecificationPropertyAdmin", new { id = Model.ElementSpecification.Id, name = property.Name, area = "MainBit.Layouts" }, null) @T(" | ")
+                    @Html.ActionLink(T("Remove").Text, "Delete", "SpecificationPropertyAdmin", new { id = Model.ElementSpecification.Id, name = property.Name, area = "MainBit.Layouts" }, new { itemprop = "RemoveUrl UnsafeUrl" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink(T("Back").Text, "Index", "SpecificationAdmin", new { area = "MainBit.Layouts" }, new { @class = "button" })
