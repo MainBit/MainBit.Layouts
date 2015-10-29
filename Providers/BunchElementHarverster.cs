@@ -18,6 +18,7 @@ using Orchard.Layouts.Models;
 using Orchard.Layouts.Helpers;
 using MainBit.Layouts.Elements;
 using Orchard.Environment.Extensions;
+using MainBit.Layouts.Helpers;
 
 namespace MainBit.Layouts.Providers
 {
@@ -28,14 +29,16 @@ namespace MainBit.Layouts.Providers
         private readonly Work<IElementManager> _elementManager;
         private readonly Work<ILayoutManager> _layoutManager;
         private readonly Work<IElementFactory> _elementFactory;
+        private readonly Work<ILayoutSerializer> _layoutSerializer;
 
         public BunchElementHarverster(Work<IBunchService> elementBanchService, Work<IElementManager> elementManager, Work<ILayoutManager> layoutManager,
-            Work<IElementFactory> elementFactory)
+            Work<IElementFactory> elementFactory, Work<ILayoutSerializer> layoutSerializer)
         {
             _banchService = elementBanchService;
             _elementManager = elementManager;
             _layoutManager = layoutManager;
             _elementFactory = elementFactory;
+            _layoutSerializer = layoutSerializer;
         }
 
         public IEnumerable<ElementDescriptor> HarvestElements(HarvestElementsContext context)
@@ -84,7 +87,27 @@ namespace MainBit.Layouts.Providers
 
         private void CreatingDisplay(ElementCreatingDisplayShapeContext context)
         {
-            
+            // this is actualy need to put into ElementEventHandlerBase.Created method
+            // but now it's impossible because child elements will be overriden by ElementSerializer.ParseNode method (((
+            // there is a copy of this code in DefaultModelMaps class
+            var bunch = context.Element as Bunch;
+            var modifiedElements = bunch.Elements;
+            var originalElements = _layoutSerializer.Value.Deserialize(
+                    bunch.Descriptor.StateBag["LayoutData"].ToString(),
+                    new DescribeElementsContext { Content = context.Content })
+                .ToList();
+            bunch.Elements = originalElements;
+            modifiedElements = modifiedElements.Flatten().ToList();
+            foreach (var originalElement in bunch.Elements.Flatten())
+            {
+                var originalElementIdentifier = originalElement.GetIdentifier();
+                if (originalElementIdentifier == null)
+                    continue;
+
+                var modifiedElement = modifiedElements.FirstOrDefault(e => e.GetIdentifier() == originalElementIdentifier);
+                if (modifiedElement != null)
+                    originalElement.Data = modifiedElement.Data;
+            }
         }
 
         private void Display(ElementDisplayContext context)

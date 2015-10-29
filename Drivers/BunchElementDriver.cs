@@ -4,11 +4,22 @@ using Orchard.Layouts.Elements;
 using Orchard.Layouts.Framework.Display;
 using Orchard.Layouts.Framework.Drivers;
 using Orchard.Layouts.Framework.Elements;
+using System.Linq;
+using Orchard.Layouts.Helpers;
+using MainBit.Layouts.Helpers;
+using Orchard.Layouts.Services;
 
 namespace MainBit.Layouts.Drivers
 {
     [OrchardFeature("MainBit.Layouts.Bunches")]
     public class BunchElementDriver : ElementDriver<Bunch> {
+
+        private readonly ILayoutSerializer _layoutSerializer;
+
+        public BunchElementDriver(ILayoutSerializer layoutSerializer)
+        {
+            _layoutSerializer = layoutSerializer;
+        }
 
         protected override EditorResult OnBuildEditor(Bunch element, ElementEditorContext context)
         {
@@ -22,6 +33,7 @@ namespace MainBit.Layouts.Drivers
 
         protected override void OnDisplaying(Bunch element, ElementDisplayContext context)
         {
+            
         }
 
         protected override void OnLayoutSaving(Bunch element, ElementSavingContext context)

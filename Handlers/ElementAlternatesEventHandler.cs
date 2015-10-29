@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Orchard.Utility.Extensions;
 
 namespace MainBit.Layouts.Handlers
 {
@@ -18,11 +19,33 @@ namespace MainBit.Layouts.Handlers
         {
             (context.ElementShape as IShape).Metadata.OnDisplaying((displaying =>
             {
-                displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_ContentType__{1}", context.Element.GetType().Name, context.Content.ContentItem.ContentType));
+                var typeName = context.Element.GetType().Name;
+                var category = context.Element.Category.ToSafeName();
+
+                displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_ContentType__{1}", typeName, context.Content.ContentItem.ContentType));
 
                 if (context.Element is MediaItem)
                 {
-                    displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}", context.Element.GetType().Name, (context.Element as MediaItem).DisplayType));
+                    displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}", typeName, (context.Element as MediaItem).DisplayType));
+                }
+
+                if (context.Element.HtmlClass.StartsWith("DisplayType:"))
+                {
+                    string displayType;
+                    var indexOfSpace = context.Element.HtmlClass.IndexOf(' ');
+                    if (indexOfSpace < 0)
+                    {
+                        displayType = context.Element.HtmlClass.Substring("DisplayType:".Length);
+                        context.Element.HtmlClass = null;
+                    }
+                    else
+                    {
+                        displayType = context.Element.HtmlClass.Substring("DisplayType:".Length, indexOfSpace - "DisplayType:".Length);
+                        context.Element.HtmlClass = context.Element.HtmlClass.Substring(indexOfSpace + 1);
+                    }
+
+                    displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}", typeName, displayType));
+                    displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}__{2}", typeName, displayType, category));
                 }
 
             }));

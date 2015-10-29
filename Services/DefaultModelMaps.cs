@@ -43,6 +43,9 @@ namespace MainBit.Layouts.Services {
             node["contentTypeClass"] = element.DisplayText.Text.HtmlClassify();
             node["contentTypeDescription"] = element.Descriptor.Description.Text;
 
+            // this is actualy need to put into ElementEventHandlerBase.Created method
+            // but now it's impossible because child elements will be overriden by ElementSerializer.ParseNode method (((
+            // there is a copy of this code in BunchElementHarverster class
             var bunch = element as Bunch;
             var modifiedElements = bunch.Elements;
             var originalElements = _layoutSerializer.Value.Deserialize(element.Descriptor.StateBag["LayoutData"].ToString(), describeContext).ToList();
