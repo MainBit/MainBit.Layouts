@@ -97,6 +97,11 @@
       <Name>Orchard.Core</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Orchard.Forms\Orchard.Forms.csproj">
+      <Project>{642a49d7-8752-4177-80d6-bfbbcfad3de0}</Project>
+      <Name>Orchard.Forms</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Orchard.Layouts\Orchard.Layouts.csproj">
       <Project>{6bd8b2fa-f2e3-4ac8-a4c3-2925a653889a}</Project>
       <Name>Orchard.Layouts</Name>
@@ -115,8 +120,10 @@
     <Compile Include="Drivers\ContentLayoutMapPartDriver.cs" />
     <Compile Include="Drivers\DivElementDriver.cs" />
     <Compile Include="Drivers\BunchElementPartDriver.cs" />
+    <Compile Include="Drivers\LinkElementDriver.cs" />
     <Compile Include="Elements\Div.cs" />
     <Compile Include="Elements\Bunch.cs" />
+    <Compile Include="Elements\Link.cs" />
     <Compile Include="Handlers\BunchElementPartHandler.cs" />
     <Compile Include="Handlers\ContentLayoutMapPartHandler.cs" />
     <Compile Include="Handlers\ElementAlternatesEventHandler.cs" />
@@ -191,6 +198,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\EditorTemplates\ElementIdentity.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Elements\Link.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

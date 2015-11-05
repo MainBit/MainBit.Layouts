@@ -29,14 +29,18 @@ namespace MainBit.Layouts.Handlers
                 var typeName = context.Element.GetType().Name;
                 var category = context.Element.Category.ToSafeName();
 
-                displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_ContentType__{1}", typeName, context.Content.ContentItem.ContentType));
+                if (context.Content != null)
+                {
+                    displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_ContentType__{1}",
+                        typeName, context.Content.ContentItem.ContentType));
+                }
 
                 if (context.Element is MediaItem)
                 {
                     displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}", typeName, (context.Element as MediaItem).DisplayType));
                 }
 
-                if (context.Element.HtmlClass.StartsWith("DisplayType:"))
+                if (context.Element.HtmlClass != null && context.Element.HtmlClass.StartsWith("DisplayType:"))
                 {
                     string displayType;
                     var indexOfSpace = context.Element.HtmlClass.IndexOf(' ');

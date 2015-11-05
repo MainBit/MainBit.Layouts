@@ -1,0 +1,14 @@
+﻿@using Orchard.DisplayManagement.Shapes
+@using Orchard.Layouts.Helpers
+@using MainBit.Layouts.Elements
+@{
+    Link element = Model.Element;
+
+    var tagBuilder = TagBuilderExtensions.CreateElementTagBuilder(Model, "p");
+}
+@tagBuilder.StartElement
+    @*<span class="name">@name:</span>*@
+    <span class="value">
+        <a href="@element.Value" target="@element.Target">@element.Text</a>
+    </span>
+@tagBuilder.EndElement

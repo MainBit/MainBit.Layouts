@@ -1,13 +1,15 @@
 ﻿var LayoutEditor;
 (function (LayoutEditor) {
 
-    LayoutEditor.Bunch = function (contentType, data, htmlId, htmlClass, htmlStyle, isTemplated, rule, children) {
+    LayoutEditor.Bunch = function (data, htmlId, htmlClass, htmlStyle, isTemplated, rule, children, contentType, contentTypeLabel, contentTypeClass) {
         LayoutEditor.Element.call(this, "Bunch", data, htmlId, htmlClass, htmlStyle, isTemplated, rule);
         LayoutEditor.Container.call(this, [], children); // LayoutEditor.Container.call(this, ["Canvas", "Grid", "Content"], children);
 
         this.isContainable = true;
         this.dropTargetClass = "layout-common-holder";
         this.contentType = contentType;
+        this.contentTypeLabel = contentTypeLabel;
+        this.contentTypeClass = contentTypeClass;
 
         this.toObject = function () {
             return {
@@ -26,14 +28,16 @@
 
     LayoutEditor.Bunch.from = function (value) {
         var result = new LayoutEditor.Bunch(
-            value.contentType,
             value.data,
             value.htmlId,
             value.htmlClass,
             value.htmlStyle,
             value.isTemplated,
             value.rule,
-            LayoutEditor.childrenFrom(value.children));
+            LayoutEditor.childrenFrom(value.children),
+            value.contentType,
+            value.contentTypeLabel,
+            value.contentTypeClass);
 
         result.toolboxIcon = value.toolboxIcon;
         result.toolboxLabel = value.toolboxLabel;

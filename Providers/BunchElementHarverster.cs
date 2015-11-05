@@ -91,12 +91,15 @@ namespace MainBit.Layouts.Providers
             // but now it's impossible because child elements will be overriden by ElementSerializer.ParseNode method (((
             // there is a copy of this code in DefaultModelMaps class
             var bunch = context.Element as Bunch;
+
+            bunch.IsTemplated = false;
             var modifiedElements = bunch.Elements;
             var originalElements = _layoutSerializer.Value.Deserialize(
                     bunch.Descriptor.StateBag["LayoutData"].ToString(),
                     new DescribeElementsContext { Content = context.Content })
                 .ToList();
             bunch.Elements = originalElements;
+            MakeTemplated(bunch.Elements);
             modifiedElements = modifiedElements.Flatten().ToList();
             foreach (var originalElement in bunch.Elements.Flatten())
             {
@@ -105,8 +108,38 @@ namespace MainBit.Layouts.Providers
                     continue;
 
                 var modifiedElement = modifiedElements.FirstOrDefault(e => e.GetIdentifier() == originalElementIdentifier);
-                if (modifiedElement != null)
-                    originalElement.Data = modifiedElement.Data;
+                if (modifiedElement == null)
+                    continue;
+                
+                originalElement.Data = modifiedElement.Data;
+
+                var originalElementContainer = originalElement as Container;
+                if (originalElementContainer != null && !originalElementContainer.Elements.Any())
+                {
+                    originalElementContainer.Elements = (modifiedElement as Container).Elements;
+                }
+            }
+
+            
+        }
+
+        private void MakeTemplated(IEnumerable<Element> elements)
+        {
+            foreach (var element in elements)
+            {
+                var container = element as Container;
+                if (container != null)
+                {
+                    if (container.Elements.Any())
+                    {
+                        element.IsTemplated = true;
+                        MakeTemplated(container.Elements);
+                    }
+                    else
+                    {
+                        element.IsTemplated = false;
+                    }
+                }
             }
         }
 

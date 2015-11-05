@@ -120,14 +120,11 @@ namespace MainBit.Layouts.Drivers {
                     foreach (var element in elementInstances.Flatten())
                     {
                         var elementIdentifier = element.GetIdentifier();
-                        if (elementIdentifier != null)
+                        if (elementIdentifier == null || elementIdentifiers.Contains(elementIdentifier))
                         {
-                            if(elementIdentifiers.Contains(elementIdentifier)) {
-                                elementIdentifier = Guid.NewGuid().ToString();
-                                element.SetIdentifier(elementIdentifier);
-                            }
-                            elementIdentifiers.Add(elementIdentifier);
+                            element.SetIdentifier(Guid.NewGuid().ToString());
                         }
+                        elementIdentifiers.Add(elementIdentifier);
                     }
 
                     var removedElementInstances = _serializer.Deserialize(viewModel.LayoutEditor.Trash, describeContext).ToArray();

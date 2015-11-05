@@ -17,6 +17,7 @@ namespace MainBit.Layouts.Migrations
                 .WithDescription("Wield elements into one element, that can be added to an layout."));
 
             ContentDefinitionManager.AlterTypeDefinition("BunchElement", type => type
+                .Listable()
                 .WithPart("CommonPart", p => p
                     .WithSetting("OwnerEditorSettings.ShowOwnerEditor", "false")
                     .WithSetting("DateEditorSettings.ShowDateEditor", "false"))
