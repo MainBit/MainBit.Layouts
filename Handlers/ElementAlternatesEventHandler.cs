@@ -22,7 +22,7 @@ namespace MainBit.Layouts.Handlers
         }
         
         //public override void Displayed(Orchard.Layouts.Framework.Display.ElementDisplayContext context)
-        public override void Displaying(Orchard.Layouts.Framework.Display.ElementDisplayContext context)
+        public override void Displaying(Orchard.Layouts.Framework.Display.ElementDisplayingContext context)
         {
             (context.ElementShape as IShape).Metadata.OnDisplaying((displaying =>
             {

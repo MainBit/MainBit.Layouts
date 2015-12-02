@@ -19,11 +19,12 @@ using Orchard.Layouts.Helpers;
 using MainBit.Layouts.Elements;
 using Orchard.Environment.Extensions;
 using MainBit.Layouts.Helpers;
+using Orchard.Core.Common.Models;
 
 namespace MainBit.Layouts.Providers
 {
     [OrchardFeature("MainBit.Layouts.Bunches")]
-    public class BunchElementHarverster : Component, ElementHarvester
+    public class BunchElementHarverster : Component, IElementHarvester
     {
         private readonly Work<IBunchService> _banchService;
         private readonly Work<IElementManager> _elementManager;
@@ -60,18 +61,19 @@ namespace MainBit.Layouts.Providers
                 let elementName = T(bunch.As<ITitleAspect>().Title)
                 select new ElementDescriptor(
                     baseType,
-                    string.Format("{0}-{1}", baseType.ToString(), bunch.Id),
+                    string.Format("{0}-{1}", baseType.ToString(), bunch.Id), // bunch.As<Orchard.Core.Common.Models.IdentityPart>().Identifier
                     elementName,
                     baseElement.Description,
                     baseElement.Category)
                 {
                     ToolboxIcon = "\uf10c",
                     CreatingDisplay = creatingDisplayContext => CreatingDisplay(creatingDisplayContext),
-                    Display = displayContext => Display(displayContext),
+                    Displaying = displayingContext => Displaying(displayingContext),
                     Editor = elementEditorContext => Editor(elementEditorContext),
                     UpdateEditor = elementEditorContext => UpdateEditor(elementEditorContext),
                     StateBag = new Dictionary<string, object> {
                         { "BunchId", bunch.Id },
+                        { "BunchIdentifier", bunch.As<IdentityPart>().Identifier }, // uses for exporting/importing
                         { "LayoutData",  bunch.LayoutData }
                     }
                 };
@@ -143,7 +145,7 @@ namespace MainBit.Layouts.Providers
             }
         }
 
-        private void Display(ElementDisplayContext context)
+        private void Displaying(ElementDisplayingContext context)
         {
             //var drivers = _elementManager.Value.GetDrivers(context.Element);
 

@@ -25,5 +25,11 @@ namespace MainBit.Layouts.Models {
             get { return Retrieve<string>("LayoutData"); }
             set { this.Store(x => x.LayoutData, value); }
         }
+
+        public int? TemplateId
+        {
+            get { return null; }
+            set { }
+        }
     }
 }

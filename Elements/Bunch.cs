@@ -18,8 +18,22 @@ namespace MainBit.Layouts.Elements
 
         public int BunchId
         {
-            get { return ElementDataHelper.Retrieve(this, x => x.BunchId); }
-            set { this.Store(x => x.BunchId, value); }
+            get {
+                object bunchId;
+                if(this.Descriptor.StateBag.TryGetValue("BunchId", out bunchId))
+                    return Convert.ToInt32(bunchId);
+                return 0;
+            }
+        }
+
+        public string BunchIdentifier
+        {
+            get {
+                object bunchIdentifier;
+                if (this.Descriptor.StateBag.TryGetValue("BunchIdentifier", out bunchIdentifier))
+                    return bunchIdentifier.ToString();
+                return null;
+            }
         }
     }
 }

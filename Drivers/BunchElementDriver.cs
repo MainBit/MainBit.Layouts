@@ -8,6 +8,8 @@ using System.Linq;
 using Orchard.Layouts.Helpers;
 using MainBit.Layouts.Helpers;
 using Orchard.Layouts.Services;
+using MainBit.Layouts.Models;
+using Orchard.ContentManagement;
 
 namespace MainBit.Layouts.Drivers
 {
@@ -31,7 +33,7 @@ namespace MainBit.Layouts.Drivers
             return OnBuildEditor(element, context);
         }
 
-        protected override void OnDisplaying(Bunch element, ElementDisplayContext context)
+        protected override void OnDisplaying(Bunch element, ElementDisplayingContext context)
         {
             
         }
@@ -46,12 +48,18 @@ namespace MainBit.Layouts.Drivers
 
         protected override void OnExporting(Bunch element, ExportElementContext context)
         {
+            if (!string.IsNullOrEmpty(element.BunchIdentifier)) {
+                context.ExportableData["BunchIdentifier"] = element.BunchIdentifier;
+            }
         }
 
         protected override void OnImporting(Bunch element, ImportElementContext context)
         {
-        }
+            var bunchIdentifier = context.ExportableData.Get("BunchIdentifier");
+            var query = bunchIdentifier != null ? context.Session.GetItemFromSession(bunchIdentifier) : default(Orchard.ContentManagement.ContentItem);
 
-    
+            if (query == null)
+                return;
+        }
     }
 }

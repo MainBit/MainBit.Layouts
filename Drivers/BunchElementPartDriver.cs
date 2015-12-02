@@ -127,7 +127,7 @@ namespace MainBit.Layouts.Drivers {
                         elementIdentifiers.Add(elementIdentifier);
                     }
 
-                    var removedElementInstances = _serializer.Deserialize(viewModel.LayoutEditor.Trash, describeContext).ToArray();
+                    var removedElementInstances = _serializer.Deserialize(viewModel.LayoutEditor.RecycleBin, describeContext).ToArray();
                     var context = new LayoutSavingContext
                     {
                         Content = part,
@@ -151,38 +151,43 @@ namespace MainBit.Layouts.Drivers {
             });
         }
 
-        //protected override void Exporting(ElementBunchPart part, ExportContentContext context)
-        //{
-        //    _layoutManager.Exporting(new ExportLayoutContext { Layout = part });
+        protected override void Exporting(BunchElementPart part, ExportContentContext context)
+        {
+            _layoutManager.Exporting(new ExportLayoutContext { Layout = part });
 
-        //    context.Element(part.PartDefinition.Name).SetElementValue("LayoutData", part.LayoutData);
+            context.Element(part.PartDefinition.Name).SetElementValue("LayoutData", part.LayoutData);
 
-        //    if (part.TemplateId != null) {
-        //        var template = part.ContentItem.ContentManager.Get(part.TemplateId.Value);
+            //if (part.TemplateId != null)
+            //{
+            //    var template = part.ContentItem.ContentManager.Get(part.TemplateId.Value);
 
-        //        if (template != null) {
-        //            var templateIdentity = part.ContentItem.ContentManager.GetItemMetadata(template).Identity;
-        //            context.Element(part.PartDefinition.Name).SetAttributeValue("TemplateId", templateIdentity);
-        //        }
-        //    }
-        //}
+            //    if (template != null)
+            //    {
+            //        var templateIdentity = part.ContentItem.ContentManager.GetItemMetadata(template).Identity;
+            //        context.Element(part.PartDefinition.Name).SetAttributeValue("TemplateId", templateIdentity);
+            //    }
+            //}
+        }
 
-        //protected override void Importing(ElementBunchPart part, ImportContentContext context)
-        //{
-        //    // Don't do anything if the tag is not specified.
-        //    if (context.Data.Element(part.PartDefinition.Name) == null) {
-        //        return;
-        //    }
+        protected override void Importing(BunchElementPart part, ImportContentContext context)
+        {
+            // Don't do anything if the tag is not specified.
+            if (context.Data.Element(part.PartDefinition.Name) == null)
+            {
+                return;
+            }
 
-        //    context.ImportChildEl(part.PartDefinition.Name, "LayoutData", s => {
-        //        part.LayoutData = s;
-        //        _layoutManager.Importing(new ImportLayoutContext {
-        //            Layout = part,
-        //            Session = new ImportContentContextWrapper(context)
-        //        });
-        //    });
+            context.ImportChildEl(part.PartDefinition.Name, "LayoutData", s =>
+            {
+                part.LayoutData = s;
+                _layoutManager.Importing(new ImportLayoutContext
+                {
+                    Layout = part,
+                    Session = new ImportContentContextWrapper(context)
+                });
+            });
 
-        //    context.ImportAttribute(part.PartDefinition.Name, "TemplateId", s => part.TemplateId = GetTemplateId(context, s));
-        //}
+            //context.ImportAttribute(part.PartDefinition.Name, "TemplateId", s => part.TemplateId = GetTemplateId(context, s));
+        }
     }
 }
