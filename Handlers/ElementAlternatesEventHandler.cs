@@ -53,22 +53,20 @@ namespace MainBit.Layouts.Handlers
                     else
                     {
                         displayType = context.Element.HtmlClass.Substring("DisplayType:".Length, indexOfSpace - "DisplayType:".Length);
-                        context.ElementShape.TokenizeHtmlClass = (Func<string>)(()  => 
+                        context.ElementShape.TokenizeHtmlClass = (Func<string>)(() =>
                                 _tokenizer.Replace(context.Element.HtmlClass.Substring(indexOfSpace + 1), new { Content = context.Content }));
                     }
 
                     displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}", typeName, displayType));
                     displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}__{2}", typeName, displayType, category));
+
+                    if ((context.Element is Menu) && (context.ElementShape.Menu is IShape))
+                    {
+                        //context.ElementShape.Menu.Element = context.Element;
+                        context.ElementShape.Menu.DisplayType = displayType;   
+                    }
                 }
-
             }));
-
-            // for feature versions - menu exists only in dev branch
-            //if ((context.Element is Menu) && (context.ElementShape.Menu is IShape))
-            //{
-            //    //context.ElementShape.Menu.Element = context.Element;
-            //    context.ElementShape.Menu.ElementClass = context.Element.HtmlClass;   
-            //}
         }
     }
 }

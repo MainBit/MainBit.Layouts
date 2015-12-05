@@ -33,33 +33,33 @@ namespace MainBit.Layouts.Handlers
             builder.Describe("Menu")
                 .OnDisplaying(displaying =>
                 {
-                    string elementClass = displaying.Shape.ElementClass;
+                    string displayType = displaying.Shape.DisplayType;
 
-                    if (!string.IsNullOrWhiteSpace(elementClass))
+                    if (!string.IsNullOrWhiteSpace(displayType))
                     {
-                        displaying.Shape.Metadata.Alternates.Add("Menu__ElementClass__" + EncodeAlternateElement(elementClass));
+                        displaying.Shape.Metadata.Alternates.Add("Menu_" + EncodeAlternateElement(displayType));
                     }
                 });
 
             builder.Describe("MenuItem")
                 .OnDisplaying(displaying =>
                 {
-                    string elementClass = displaying.Shape.Menu.ElementClass;
+                    string displayType = displaying.Shape.Menu.DisplayType;
 
-                    if (!string.IsNullOrWhiteSpace(elementClass))
+                    if (!string.IsNullOrWhiteSpace(displayType))
                     {
-                        displaying.Shape.Metadata.Alternates.Add("MenuItem__ElementClass__" + EncodeAlternateElement(elementClass));
+                        displaying.Shape.Metadata.Alternates.Add("MenuItem_" + EncodeAlternateElement(displayType));
                     }
                 });
 
             builder.Describe("MenuItemLink")
                 .OnDisplaying(displaying =>
                 {
-                    string elementClass = displaying.Shape.Menu.ElementClass;
+                    string displayType = displaying.Shape.Menu.DisplayType;
 
-                    if (!string.IsNullOrWhiteSpace(elementClass))
+                    if (!string.IsNullOrWhiteSpace(displayType))
                     {
-                        displaying.Shape.Metadata.Alternates.Add("MenuItemLink__ElementClass__" + EncodeAlternateElement(elementClass));
+                        displaying.Shape.Metadata.Alternates.Add("MenuItemLink_" + EncodeAlternateElement(displayType));
                     }
                 });
         }
