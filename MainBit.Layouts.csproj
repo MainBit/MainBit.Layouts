@@ -98,6 +98,11 @@
       <Name>Orchard.Core</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\MainBit.Utility\MainBit.Utility.csproj">
+      <Project>{34cb6685-15d4-4ef8-8791-2e1efac64339}</Project>
+      <Name>MainBit.Utility</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Orchard.Forms\Orchard.Forms.csproj">
       <Project>{642a49d7-8752-4177-80d6-bfbbcfad3de0}</Project>
       <Name>Orchard.Forms</Name>
