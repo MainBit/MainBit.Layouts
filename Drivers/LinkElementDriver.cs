@@ -11,6 +11,7 @@ using MainBit.Layouts.Elements;
 using Orchard.Forms.Services;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Orchard.Layouts.Services;
 
 namespace MainBit.Layouts.Drivers
 {
@@ -18,8 +19,8 @@ namespace MainBit.Layouts.Drivers
     {
 
         public LinkElementDriver(
-            IFormManager formManager)
-        : base(formManager) {
+            IFormsBasedElementServices formsServices)
+        : base(formsServices) {
 
         }
 
