@@ -1,21 +1,13 @@
-using System;
 using System.Linq;
-using JetBrains.Annotations;
-using Orchard.ContentManagement.MetaData;
-using Orchard.Core.Common.Models;
-using Orchard.Data;
 using Orchard.Localization;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Handlers;
-using Orchard.Security;
-using Orchard.Services;
 using MainBit.Layouts.Relations.Services;
 using MainBit.Layouts.Relations.Models;
 using Orchard.Environment.Extensions;
 
 namespace MainBit.Layouts.Relations.Handlers
 {
-    [UsedImplicitly]
     [OrchardFeature("MainBit.Layouts.Relations")]
     public class ContentLayoutMapPartHandler : ContentHandler {
         private readonly ILayoutContentMapService _layoutContentMapService;
