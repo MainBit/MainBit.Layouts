@@ -15,17 +15,13 @@ namespace MainBit.Layouts.Relations.Handlers
 
         public ContentLayoutMapPartHandler(
             ILayoutContentMapService layoutContentMapService,
-            IContentManager contentManager) {
-
+            IContentManager contentManager)
+        {
             _contentManager = contentManager;
             _layoutContentMapService = layoutContentMapService;
-            T = NullLocalizer.Instance;
 
             OnLoading<ContentLayoutMapPart>((context, part) => LazyLoadHandlers(part));
         }
-
-
-        public Localizer T { get; set; }
 
         protected void LazyLoadHandlers(ContentLayoutMapPart part)
         {

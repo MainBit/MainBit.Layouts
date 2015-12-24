@@ -8,22 +8,23 @@ using Orchard.Layouts.Helpers;
 
 namespace MainBit.Layouts.Migrations
 {
-    [OrchardFeature("MainBit.Layouts.Bunches")]
-    public class Bunches :  DataMigrationImpl {
+    [OrchardFeature("MainBit.Layouts.Compounds")]
+    public class Compounds :  DataMigrationImpl {
         public int Create() {
 
-            ContentDefinitionManager.AlterPartDefinition("BunchElementPart", part => part
+            ContentDefinitionManager.AlterPartDefinition("CompoundElementPart", part => part
                 .Attachable(false)
-                .WithDescription("Wield elements into one element, that can be added to an layout."));
+                .WithDescription("Turn content items with layout part to elements that could be used in other layouts and that are partial editable."));
 
-            ContentDefinitionManager.AlterTypeDefinition("BunchElement", type => type
+            ContentDefinitionManager.AlterTypeDefinition("CompoundElement", type => type
                 .Listable()
                 .WithPart("CommonPart", p => p
                     .WithSetting("OwnerEditorSettings.ShowOwnerEditor", "false")
                     .WithSetting("DateEditorSettings.ShowDateEditor", "false"))
                 .WithPart("TitlePart")
                 .WithPart("IdentityPart")
-                .WithPart("BunchElementPart"));
+                .WithPart("LayoutPart")
+                .WithPart("CompoundElementPart"));
 
             return 1;
         }

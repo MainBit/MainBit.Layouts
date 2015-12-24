@@ -1,6 +1,6 @@
 ﻿angular
     .module("LayoutEditor")
-    .directive("orcLayoutBunch", ["$compile", "scopeConfigurator", "environment",
+    .directive("orcLayoutCompound", ["$compile", "scopeConfigurator", "environment",
         function ($compile, scopeConfigurator, environment) {
             return {
                 restrict: "E",
@@ -12,7 +12,7 @@
                         $scope.sortableOptions["axis"] = "y";
                     }
                 ],
-                templateUrl: environment.templateUrl("Bunch"),
+                templateUrl: environment.templateUrl("Compound"),
                 replace: true
             };
         }

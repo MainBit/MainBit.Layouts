@@ -1,0 +1,25 @@
+﻿@model MainBit.Layouts.ViewModels.CompoundElementPartVM
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.ElementTypeName, T("Element Type Name").ToString(), new { @class = "required" })
+        @if (Model.AllowEditElementTypeName)
+        {
+            @Html.TextBoxFor(m => m.ElementTypeName, new { @class = "text large" })
+        }
+        else
+        {
+            @Html.TextBoxFor(m => m.ElementTypeName, new { @class = "text large", @readonly = "readonly" })
+        }
+        @Html.Hint(T("The technical type name of the specialized element. Example: Acme.Elements.Special{0}.", "Element"))
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ElementDescription, T("Element Description"))
+        @Html.TextBoxFor(m => m.ElementDescription, new { @class = "text large" })
+        @Html.Hint(T("Optionally enter a description for this element."))
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ElementCategory, T("Element Category").ToString(), new { @class = "required" })
+        @Html.TextBoxFor(m => m.ElementCategory, new { @class = "text large" })
+        @Html.Hint(T("Optionally specify a category for this element."))
+    </div>
+</fieldset>

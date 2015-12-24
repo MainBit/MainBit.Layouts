@@ -20,8 +20,7 @@ namespace MainBit.Layouts.Handlers
         {
             _tokenizer = tokenizer;
         }
-        
-        //public override void Displayed(Orchard.Layouts.Framework.Display.ElementDisplayContext context)
+
         public override void Displaying(Orchard.Layouts.Framework.Display.ElementDisplayingContext context)
         {
             (context.ElementShape as IShape).Metadata.OnDisplaying((displaying =>
@@ -60,9 +59,7 @@ namespace MainBit.Layouts.Handlers
                     displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}", typeName, displayType));
                     displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}__{2}", typeName, displayType, category));
 
-                    if ((context.Element is Menu) && (context.ElementShape.Menu is IShape))
-                    {
-                        //context.ElementShape.Menu.Element = context.Element;
+                    if ((context.Element is Menu) && (context.ElementShape.Menu is IShape)) {
                         context.ElementShape.Menu.DisplayType = displayType;   
                     }
                 }

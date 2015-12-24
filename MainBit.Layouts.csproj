@@ -75,8 +75,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\JavaScript\LayoutEditor\Directives\Div.js" />
-    <Content Include="Assets\JavaScript\LayoutEditor\Directives\Bunch.js" />
-    <Content Include="Assets\JavaScript\Models\Bunch.js" />
+    <Content Include="Assets\JavaScript\LayoutEditor\Directives\Compound.js" />
+    <Content Include="Assets\JavaScript\Models\Compound.js" />
     <Content Include="Assets\JavaScript\Models\Div.js" />
     <Content Include="Scripts\LayoutEditor.js" />
     <Content Include="Scripts\LayoutEditor.min.js" />
@@ -120,36 +120,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminMenu\Bunches.cs" />
-    <Compile Include="Drivers\ElementIdentityDriver.cs" />
-    <Compile Include="Drivers\BunchElementDriver.cs" />
+    <Compile Include="AdminMenu\Compounds.cs" />
     <Compile Include="Drivers\ContentLayoutMapPartDriver.cs" />
     <Compile Include="Drivers\DivElementDriver.cs" />
-    <Compile Include="Drivers\BunchElementPartDriver.cs" />
+    <Compile Include="Drivers\CompoundElementPartDriver.cs" />
     <Compile Include="Drivers\LinkElementDriver.cs" />
     <Compile Include="Elements\Div.cs" />
-    <Compile Include="Elements\Bunch.cs" />
+    <Compile Include="Elements\Compound.cs" />
     <Compile Include="Elements\Link.cs" />
-    <Compile Include="Handlers\BunchElementPartHandler.cs" />
+    <Compile Include="Handlers\CompoundElementPartHandler.cs" />
     <Compile Include="Handlers\ContentLayoutMapPartHandler.cs" />
     <Compile Include="Handlers\ElementAlternatesEventHandler.cs" />
     <Compile Include="Handlers\LayoutPartHandler.cs" />
     <Compile Include="Handlers\ElementAlternatesShapes.cs" />
     <Compile Include="Helpers\ElementExtensions.cs" />
     <Compile Include="Handlers\LayoutEditorShapeEventHandler.cs" />
-    <Compile Include="Migrations\Bunches.cs" />
+    <Compile Include="Migrations\Compounds.cs" />
     <Compile Include="Migrations\Relations.cs" />
     <Compile Include="Models\ContentLayoutMapPart.cs" />
     <Compile Include="Models\LayoutContentMapRecord.cs" />
-    <Compile Include="Models\BunchElementPart.cs" />
-    <Compile Include="Providers\BunchElementHarverster.cs" />
+    <Compile Include="Models\CompoundElementPart.cs" />
+    <Compile Include="Providers\CompoundElementHarverster.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\DefaultModelMaps.cs" />
     <Compile Include="Services\IElementService.cs" />
-    <Compile Include="Services\IBunchService.cs" />
+    <Compile Include="Services\ICompoundElementService.cs" />
     <Compile Include="Services\ILayoutContentMapService.cs" />
     <Compile Include="Tokens\ElementTokens.cs" />
-    <Compile Include="ViewModels\ElementIdentityViewModel.cs" />
+    <Compile Include="ViewModels\CompoundElementPartVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Elements\Paragraph.Plain.cshtml" />
@@ -194,19 +192,19 @@
     <Content Include="Views\SpecificationPropertyAdmin\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\ElementBunch.cshtml" />
+    <Content Include="Views\Elements\Compound.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Elements\Bunch.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\LayoutEditor.Template.Bunch.cshtml" />
+    <Content Include="Views\LayoutEditor.Template.Compound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\EditorTemplates\ElementIdentity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Elements\Link.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts\CompoundElement.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

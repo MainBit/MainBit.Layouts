@@ -16,38 +16,38 @@ using Orchard.Environment.Extensions;
 namespace MainBit.Layouts.Services {
     public class DivModelMap : LayoutModelMapBase<Div> { }
 
-    [OrchardFeature("MainBit.Layouts.Bunches")]
-    public class ElementBunchModelMap : ILayoutModelMap
+    [OrchardFeature("MainBit.Layouts.Compounds")]
+    public class CompoundModelMap : ILayoutModelMap
     {
         private readonly Work<ILayoutSerializer> _layoutSerializer;
-        public ElementBunchModelMap(Work<ILayoutSerializer> layoutSerializer)
+        public CompoundModelMap(Work<ILayoutSerializer> layoutSerializer)
         {
             _layoutSerializer = layoutSerializer;
         }
 
         public int Priority { get { return 0; } }
-        public string LayoutElementType { get { return "Bunch"; } }
+        public string LayoutElementType { get { return "Compound"; } }
         public bool CanMap(Element element) {
-            return element is Bunch; // && element.Descriptor.TypeName != "MainBit.Layouts.Elements.Bunch";
+            return element is Compound;
         }
 
         public void FromElement(Element element, DescribeElementsContext describeContext, JToken node)
         {
 
-            if (element.Descriptor.TypeName != "MainBit.Layouts.Elements.Bunch")
+            if (element.Descriptor.TypeName != "MainBit.Layouts.Elements.Compound")
             {
                 // this is actualy need to put into ElementEventHandlerBase.Created method
                 // but now it's impossible because child elements will be overriden by ElementSerializer.ParseNode method (((
-                // there is a copy of this code in BunchElementHarverster class
-                var bunch = element as Bunch;
-                bunch.IsTemplated = false;
+                // there is a copy of this code in CompoundElementHarverster class
+                var compound = element as Compound;
+                compound.IsTemplated = false;
 
-                var modifiedElements = bunch.Elements;
+                var modifiedElements = compound.Elements;
                 var originalElements = _layoutSerializer.Value.Deserialize(element.Descriptor.StateBag["LayoutData"].ToString(), describeContext).ToList();
-                bunch.Elements = originalElements;
-                MakeTemplated(bunch.Elements);
+                compound.Elements = originalElements;
+                MakeTemplated(compound.Elements);
                 modifiedElements = modifiedElements.Flatten().ToList();
-                foreach (var originalElement in bunch.Elements.Flatten())
+                foreach (var originalElement in compound.Elements.Flatten())
                 {
                     var originalElementIdentifier = originalElement.GetIdentifier();
                     if (originalElementIdentifier == null)

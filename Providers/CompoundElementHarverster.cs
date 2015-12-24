@@ -23,19 +23,19 @@ using Orchard.Core.Common.Models;
 
 namespace MainBit.Layouts.Providers
 {
-    [OrchardFeature("MainBit.Layouts.Bunches")]
-    public class BunchElementHarverster : Component, IElementHarvester
+    [OrchardFeature("MainBit.Layouts.Compounds")]
+    public class CompoundElementHarverster : Component, IElementHarvester
     {
-        private readonly Work<IBunchService> _banchService;
+        private readonly Work<ICompoundElementService> _CompoundElementService;
         private readonly Work<IElementManager> _elementManager;
         private readonly Work<ILayoutManager> _layoutManager;
         private readonly Work<IElementFactory> _elementFactory;
         private readonly Work<ILayoutSerializer> _layoutSerializer;
 
-        public BunchElementHarverster(Work<IBunchService> elementBanchService, Work<IElementManager> elementManager, Work<ILayoutManager> layoutManager,
+        public CompoundElementHarverster(Work<ICompoundElementService> CompoundElementService, Work<IElementManager> elementManager, Work<ILayoutManager> layoutManager,
             Work<IElementFactory> elementFactory, Work<ILayoutSerializer> layoutSerializer)
         {
-            _banchService = elementBanchService;
+            _CompoundElementService = CompoundElementService;
             _elementManager = elementManager;
             _layoutManager = layoutManager;
             _elementFactory = elementFactory;
@@ -44,66 +44,59 @@ namespace MainBit.Layouts.Providers
 
         public IEnumerable<ElementDescriptor> HarvestElements(HarvestElementsContext context)
         {
-            var bunches = _banchService.Value.GetAll().ToArray();
-            var baseType = typeof(Bunch);
-            //var describeContext = new DescribeElementsContext {Content = context.Content, CacheVaryParam = "Bunches" };
-            //var baseElementDescriptor = _elementManager.Value.GetElementDescriptorByTypeName(describeContext, baseType.ToString());
-            //var baseElement = _elementManager.Value.ActivateElement(baseElementDescriptor);
+            var compoundElements = _CompoundElementService.Value.GetAll().ToArray();
 
-            var baseElement = new Bunch(); // if activate something that it cause of enfinity loop
-            // but why snippet harvester work fine ????????????????????????????????????????????????????????
-            // i create it only for string values (like category, description)
-
-            //var baseElement = _elementFactory.Value.Activate(baseType);
-
-            var query =
-                from bunch in bunches
-                let elementName = T(bunch.As<ITitleAspect>().Title)
-                select new ElementDescriptor(
-                    baseType,
-                    string.Format("{0}-{1}", baseType.ToString(), bunch.Id), // bunch.As<Orchard.Core.Common.Models.IdentityPart>().Identifier
-                    elementName,
-                    baseElement.Description,
-                    baseElement.Category)
+            return compoundElements.Select(compoundElement => {
+                return new ElementDescriptor(typeof(Compound),
+                    compoundElement.ElementTypeName,
+                    T(compoundElement.As<ITitleAspect>().Title),
+                    T(compoundElement.ElementDescription),
+                    compoundElement.ElementCategory)
                 {
-                    ToolboxIcon = "\uf10c",
                     CreatingDisplay = creatingDisplayContext => CreatingDisplay(creatingDisplayContext),
-                    Displaying = displayingContext => Displaying(displayingContext),
-                    Editor = elementEditorContext => Editor(elementEditorContext),
-                    UpdateEditor = elementEditorContext => UpdateEditor(elementEditorContext),
+                    UpdateEditor = null,
+                    EnableEditorDialog = false,
+                    Editor = editorContext => Editor(editorContext),
+                    Displaying = elementDisplayingContext => Displaying(elementDisplayingContext),
+                    
                     StateBag = new Dictionary<string, object> {
-                        { "BunchId", bunch.Id },
-                        { "BunchIdentifier", bunch.As<IdentityPart>().Identifier }, // uses for exporting/importing
-                        { "LayoutData",  bunch.LayoutData }
+                        { "ContentItemId", compoundElement.Id },
+                        { "ContentItemVersionId", compoundElement.ContentItem.VersionRecord.Id },
+                        { "LayoutData",  compoundElement.As<LayoutPart>().LayoutData }
                     }
                 };
-
-            var descriptors = query.ToArray();
-            return descriptors;
+            });
         }
 
-        private IEnumerable<IElementDriver> GetDrivers(Element rootElement)
+        private void Editor(ElementEditorContext context)
         {
-            return _elementManager.Value.GetDrivers(rootElement);
+
         }
+
+        private void Displaying(ElementDisplayingContext context)
+        {
+
+        }
+
+
 
         private void CreatingDisplay(ElementCreatingDisplayShapeContext context)
         {
             // this is actualy need to put into ElementEventHandlerBase.Created method
             // but now it's impossible because child elements will be overriden by ElementSerializer.ParseNode method (((
             // there is a copy of this code in DefaultModelMaps class
-            var bunch = context.Element as Bunch;
+            var compound = context.Element as Compound;
 
-            bunch.IsTemplated = false;
-            var modifiedElements = bunch.Elements;
+            compound.IsTemplated = false;
+            var modifiedElements = compound.Elements;
             var originalElements = _layoutSerializer.Value.Deserialize(
-                    bunch.Descriptor.StateBag["LayoutData"].ToString(),
+                    compound.Descriptor.StateBag["LayoutData"] != null ? compound.Descriptor.StateBag["LayoutData"].ToString() : null,
                     new DescribeElementsContext { Content = context.Content })
                 .ToList();
-            bunch.Elements = originalElements;
-            MakeTemplated(bunch.Elements);
+            compound.Elements = originalElements;
+            MakeTemplated(compound.Elements);
             modifiedElements = modifiedElements.Flatten().ToList();
-            foreach (var originalElement in bunch.Elements.Flatten())
+            foreach (var originalElement in compound.Elements.Flatten())
             {
                 var originalElementIdentifier = originalElement.GetIdentifier();
                 if (originalElementIdentifier == null)
@@ -143,26 +136,6 @@ namespace MainBit.Layouts.Providers
                     }
                 }
             }
-        }
-
-        private void Displaying(ElementDisplayingContext context)
-        {
-            //var drivers = _elementManager.Value.GetDrivers(context.Element);
-
-            //foreach (var driver in drivers)
-            //{
-            //    driver.Displaying(context);
-            //}
-        }
-
-        private void Editor(ElementEditorContext elementEditorContext)
-        {
-
-        }
-
-        private void UpdateEditor(ElementEditorContext elementEditorContext)
-        {
-
         }
     }
 }

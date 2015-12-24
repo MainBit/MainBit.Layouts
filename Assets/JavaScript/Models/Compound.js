@@ -1,8 +1,8 @@
 ﻿var LayoutEditor;
 (function (LayoutEditor) {
 
-    LayoutEditor.Bunch = function (data, htmlId, htmlClass, htmlStyle, isTemplated, rule, children, contentType, contentTypeLabel, contentTypeClass) {
-        LayoutEditor.Element.call(this, "Bunch", data, htmlId, htmlClass, htmlStyle, isTemplated, rule);
+    LayoutEditor.Compound = function (data, htmlId, htmlClass, htmlStyle, isTemplated, rule, children, contentType, contentTypeLabel, contentTypeClass) {
+        LayoutEditor.Element.call(this, "Compound", data, htmlId, htmlClass, htmlStyle, isTemplated, rule);
         LayoutEditor.Container.call(this, [], children); // LayoutEditor.Container.call(this, ["Canvas", "Grid", "Content"], children);
 
         this.isContainable = true;
@@ -13,7 +13,7 @@
 
         this.toObject = function () {
             return {
-                "type": "Bunch"
+                "type": "Compound"
             };
         };
 
@@ -21,13 +21,13 @@
             var result = this.elementToObject();
             result.contentType = this.contentType;
             result.children = this.childrenToObject();
-            result.type = "Bunch";
+            result.type = "Compound";
             return result;
         };
     };
 
-    LayoutEditor.Bunch.from = function (value) {
-        var result = new LayoutEditor.Bunch(
+    LayoutEditor.Compound.from = function (value) {
+        var result = new LayoutEditor.Compound(
             value.data,
             value.htmlId,
             value.htmlClass,
@@ -46,8 +46,8 @@
         return result;
     };
 
-    LayoutEditor.registerFactory("Bunch", function (value) {
-        return LayoutEditor.Bunch.from(value);
+    LayoutEditor.registerFactory("Compound", function (value) {
+        return LayoutEditor.Compound.from(value);
     });
 
 })(LayoutEditor || (LayoutEditor = {}));

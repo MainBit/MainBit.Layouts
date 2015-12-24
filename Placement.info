@@ -1,5 +1,5 @@
 ﻿<Placement>
-  <Place Parts_BunchElement_Edit="Content:5" />
+  <Place Parts_CompoundElement_Edit="Content:2" />
   <Match DisplayType="Detail">
     <Place Parts_ContentLayoutMap="Content:10"/>
   </Match>

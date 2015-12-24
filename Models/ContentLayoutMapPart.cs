@@ -1,5 +1,5 @@
 ﻿using Orchard.ContentManagement;
-using Orchard.Core.Common.Utilities;
+using Orchard.ContentManagement.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
