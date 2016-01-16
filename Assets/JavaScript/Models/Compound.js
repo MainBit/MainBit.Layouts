@@ -5,6 +5,8 @@
         LayoutEditor.Element.call(this, "Compound", data, htmlId, htmlClass, htmlStyle, isTemplated, rule);
         LayoutEditor.Container.call(this, [], children); // LayoutEditor.Container.call(this, ["Canvas", "Grid", "Content"], children);
 
+        this.getIsSealed = function () { return false; } // should change
+
         this.isContainable = true;
         this.dropTargetClass = "layout-common-holder";
         this.contentType = contentType;

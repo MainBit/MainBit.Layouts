@@ -3,6 +3,10 @@
 @using MainBit.Layouts.Elements
 @{
     Link element = Model.Element;
+    if(string.IsNullOrEmpty(element.Value))
+    {
+        return;
+    }
 
     var tagBuilder = TagBuilderExtensions.CreateElementTagBuilder(Model, "p");
 }
