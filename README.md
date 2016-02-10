@@ -15,4 +15,4 @@ Provides an element token provider that enables elements to be rendered with spe
 ### 4. MainBit.Layouts.Relations
 Provides a content part that displays related layout parts (Content items with layout parts witch specific content item is added to). Example: enable feature, then create MyVideo content type with ContentLayoutMapPart content part, then create MyVideo content item, then include MyVideo content item to three BlogPost content item by ContentItem Element, then you can see related content items (three blog post items) on MyVideo content item page.
 ### 5. MainBit.Layouts.Compounds
-Provides a way to grouping elements and leater use this group as one element (with editable subelements)
+Provides a way to create compound elements from dashboard like a simple layout page (and leater use those elements in other layout page).
