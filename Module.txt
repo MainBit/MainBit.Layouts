@@ -2,8 +2,8 @@
 AntiForgery: enabled
 Author: The MainBit Team
 Website: http://mainbit.com
-Version: 1.9.2.1
-OrchardVersion: 1.9.1
+Version: 1.10
+OrchardVersion: 1.10
 Description: Description for the module
 Features:
     MainBit.Layouts:
