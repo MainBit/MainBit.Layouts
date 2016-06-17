@@ -39,6 +39,11 @@ namespace MainBit.Layouts.Handlers
                     displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}", typeName, (context.Element as MediaItem).DisplayType));
                 }
 
+                if (context.Element is ContentItem)
+                {
+                    displaying.ShapeMetadata.Alternates.Add(String.Format("Elements_{0}_{1}", typeName, (context.Element as ContentItem).DisplayType));
+                }
+
                 if (context.Element.HtmlClass != null && context.Element.HtmlClass.StartsWith("DisplayType:"))
                 {
                     string displayType;
