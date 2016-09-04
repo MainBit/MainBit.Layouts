@@ -1,4 +1,5 @@
 ﻿using Orchard;
+using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
 using Orchard.Layouts.Framework.Display;
 using Orchard.Layouts.Services;
@@ -12,7 +13,7 @@ namespace MainBit.Layouts.Services
 {
     public interface IElementService : IDependency
     {
-        string DisplayElement(string elementTypeName, string displayType);
+        string DisplayElement(string elementTypeName, string displayType, ContentItem contentItem = null);
     }
 
 
@@ -34,7 +35,7 @@ namespace MainBit.Layouts.Services
         }
 
 
-        public string DisplayElement(string elementTypeName, string displayType)
+        public string DisplayElement(string elementTypeName, string displayType, ContentItem contentItem = null)
         {
             var describeContext = DescribeElementsContext.Empty;
             var elementDescriptor = _elementManager.GetElementDescriptorByTypeName(describeContext, elementTypeName);
@@ -43,7 +44,7 @@ namespace MainBit.Layouts.Services
                 return "";
 
             var element = _elementManager.ActivateElement(elementDescriptor);
-            var elementShape = _elementDisplay.DisplayElement(element, null, displayType);
+            var elementShape = _elementDisplay.DisplayElement(element, contentItem, displayType);
             var elementHtml = _shapeDisplay.Display(elementShape);
 
             return elementHtml;

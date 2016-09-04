@@ -6,15 +6,16 @@ using System.Web.Mvc;
 using Orchard.Mvc.Html;
 using MainBit.Layouts.Services;
 using Orchard.Layouts.Framework.Elements;
+using Orchard.ContentManagement;
 
 namespace MainBit.Layouts.Helpers
 {
     public static class ElementExtensions
     {
-        public static MvcHtmlString DisplayElement(this HtmlHelper htmlHelper, string elementTypeName, string displayType = null)
+        public static MvcHtmlString DisplayElement(this HtmlHelper htmlHelper, string elementTypeName, string displayType = null, ContentItem contentItem = null)
         {
             var elementService = htmlHelper.GetWorkContext().Resolve<IElementService>();
-            var html = elementService.DisplayElement(elementTypeName, displayType);
+            var html = elementService.DisplayElement(elementTypeName, displayType, contentItem);
             return new MvcHtmlString(html);
         }
 
