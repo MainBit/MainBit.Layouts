@@ -1,9 +1,11 @@
 ﻿using Orchard.DisplayManagement.Descriptors;
 using Orchard.Environment;
+using Orchard.Environment.Extensions;
 using Orchard.UI.Resources;
 
 namespace MainBit.Layouts.Handlers
 {
+    [OrchardFeature("MainBit.Layouts.Compounds")]
     public class LayoutEditorShapeEventHandler : IShapeTableProvider {
         private readonly Work<IResourceManager> _resourceManager;
         public LayoutEditorShapeEventHandler(Work<IResourceManager> resourceManager) {

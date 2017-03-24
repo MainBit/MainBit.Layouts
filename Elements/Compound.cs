@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Orchard.Layouts.Framework.Elements;
 using Orchard.Layouts.Elements;
-using Orchard.Localization;
 using Orchard.Layouts.Helpers;
+using Orchard.Environment.Extensions;
 
 namespace MainBit.Layouts.Elements
 {
-    // This element is called "Compound" because "Layout" would be confusing
+    [OrchardFeature("MainBit.Layouts.Compounds")]
     public class Compound : Container
     {
         public override string Category

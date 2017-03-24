@@ -32,9 +32,13 @@ namespace MainBit.Layouts.Services
         private readonly ILayoutSerializer _layoutSerializer;
         private readonly ISignals _signals;
 
-        public CompoundElementService(IContentManager contentManager, ILayoutSerializer layoutSerializer, ISignals signals)
+        public CompoundElementService(
+            IContentManager contentManager,
+            ILayoutSerializer layoutSerializer,
+            ISignals signals)
         {
             _contentManager = contentManager;
+            _layoutSerializer = layoutSerializer;
             _signals = signals;
 
         }

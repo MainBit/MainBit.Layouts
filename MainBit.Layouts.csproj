@@ -156,6 +156,7 @@
     <Compile Include="Handlers\CompoundElementPartHandler.cs" />
     <Compile Include="Handlers\ContentLayoutMapPartHandler.cs" />
     <Compile Include="Handlers\ElementAlternatesEventHandler.cs" />
+    <Compile Include="Handlers\ElementIdentifierEventHandler.cs" />
     <Compile Include="Handlers\LayoutPartHandler.cs" />
     <Compile Include="Handlers\ElementAlternatesShapes.cs" />
     <Compile Include="Helpers\ElementExtensions.cs" />

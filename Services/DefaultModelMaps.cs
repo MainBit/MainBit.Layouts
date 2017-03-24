@@ -25,7 +25,7 @@ namespace MainBit.Layouts.Services {
             _layoutSerializer = layoutSerializer;
         }
 
-        public int Priority { get { return 0; } }
+        public int Priority { get { return 1; } }
         public string LayoutElementType { get { return "Compound"; } }
         public bool CanMap(Element element) {
             return element is Compound;
